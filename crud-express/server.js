@@ -43,7 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// 🔹 Mostrar todos los usuarios
+// Feature: listar clientes
 app.get("/", (req, res) => {
   db.all("SELECT * FROM users", (err, rows) => {
     if (err) throw err;
