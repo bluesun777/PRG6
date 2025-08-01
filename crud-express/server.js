@@ -43,7 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// 🔹 Mostrar todos los usuarios
+// Feature: listar clientes
 app.get("/", (req, res) => {
   db.all("SELECT * FROM users", (err, rows) => {
     if (err) throw err;
@@ -54,24 +54,6 @@ app.get("/", (req, res) => {
 // 🔹 Formulario para nuevo usuario
 app.get("/new", (req, res) => {
   res.render("new");
-});
-
-// Guardar nuevo usuario
-app.post("/new", (req, res) => {
-  const { name, email } = req.body;
-  db.run("INSERT INTO users (name, email) VALUES (?, ?)", [name, email], () => {
-    req.session.message = { type: "success", text: "Usuario guardado correctamente." };
-    res.redirect("/");
-  });
-});
-
-// Actualizar usuario
-app.post("/edit/:id", (req, res) => {
-  const { name, email } = req.body;
-  db.run("UPDATE users SET name = ?, email = ? WHERE id = ?", [name, email, req.params.id], () => {
-    req.session.message = { type: "info", text: "Usuario actualizado." };
-    res.redirect("/");
-  });
 });
 
 // 🔹 Eliminar usuario

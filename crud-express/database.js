@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database(':memory:'); // base en memoria (puedes usar archivo)
+const db = new sqlite3.Database(':memory:'); s
 
 db.serialize(() => {
   db.run(`CREATE TABLE users (
