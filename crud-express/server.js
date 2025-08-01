@@ -56,24 +56,6 @@ app.get("/new", (req, res) => {
   res.render("new");
 });
 
-// Guardar nuevo usuario
-app.post("/new", (req, res) => {
-  const { name, email } = req.body;
-  db.run("INSERT INTO users (name, email) VALUES (?, ?)", [name, email], () => {
-    req.session.message = { type: "success", text: "Usuario guardado correctamente." };
-    res.redirect("/");
-  });
-});
-
-// Actualizar usuario
-app.post("/edit/:id", (req, res) => {
-  const { name, email } = req.body;
-  db.run("UPDATE users SET name = ?, email = ? WHERE id = ?", [name, email, req.params.id], () => {
-    req.session.message = { type: "info", text: "Usuario actualizado." };
-    res.redirect("/");
-  });
-});
-
 // 🔹 Eliminar usuario
 app.get("/delete/:id", (req, res) => {
   db.run("DELETE FROM users WHERE id = ?", [req.params.id], () => {
