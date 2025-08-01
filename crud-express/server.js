@@ -26,7 +26,8 @@ app.post("/new", (req, res) => {
   });
 });
 
-// Actualizar usuario
+// Feature: editar cliente
+
 app.post("/edit/:id", (req, res) => {
   const { name, email } = req.body;
   db.run("UPDATE users SET name = ?, email = ? WHERE id = ?", [name, email, req.params.id], () => {
