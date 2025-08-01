@@ -57,7 +57,8 @@ app.get("/new", (req, res) => {
   res.render("new");
 });
 
-// 🔹 Eliminar usuario
+// Feature: eliminar cliente
+
 app.get("/delete/:id", (req, res) => {
   db.run("DELETE FROM users WHERE id = ?", [req.params.id], () => {
     res.redirect("/");
